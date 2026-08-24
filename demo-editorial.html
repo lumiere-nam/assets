@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>에디토리얼 콜라주 디자인 데모</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- 하이엔드 패션 잡지 느낌의 폰트 (Bodoni + Noto Serif KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Noto+Serif+KR:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 전체 배경을 블랙으로, 글자를 화이트로 주어 미니멀리즘 극대화 */
+    body {
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      font-family: 'Noto Serif KR', serif;
+      overflow-x: hidden;
+      margin: 0;
+    }
+    
+    .font-bodoni {
+      font-family: 'Bodoni Moda', serif;
+    }
+    
+    .collage-container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    /* 비대칭 콜라주 느낌을 위한 이미지 배치 */
+    .collage-img {
+      position: absolute;
+      width: 90%;
+      max-width: 450px;
+      z-index: 2;
+      /* 흑백 대비를 더욱 강하게 */
+      filter: grayscale(100%) contrast(1.1);
+      /* 콜라주 특유의 엇나간 그림자/프레임 효과 */
+      box-shadow: 20px 20px 0px rgba(255, 255, 255, 0.05);
+      transform: rotate(-1deg);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .collage-img:hover {
+      transform: rotate(0deg) scale(1.03);
+    }
+    
+    /* 사진과 글자가 겹칠 때 반전되는 마법 같은 혼합 효과 (Difference) */
+    .text-overlay {
+      position: absolute;
+      z-index: 10;
+      mix-blend-mode: difference;
+      color: #ffffff;
+      text-transform: uppercase;
+      pointer-events: none; /* 마우스 클릭 통과 */
+    }
+    
+    /* 타이포그래피 콜라주 */
+    .title {
+      font-size: clamp(3rem, 10vw, 7rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      text-align: right;
+      right: 5%;
+      top: 25%;
+    }
+    
+    /* 세로로 흐르는 텍스트 (잡지 레이아웃 느낌) */
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      left: 10%;
+      bottom: 20%;
+      letter-spacing: 0.3em;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: #999;
+    }
+    
+    /* 배경의 기하학적 선 (콜라주의 틀) */
+    .accent-box {
+      position: absolute;
+      width: 60%;
+      max-width: 600px;
+      height: 70%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1;
+      left: 15%;
+      top: 15%;
+    }
+    
+    /* 장식용 작은 텍스트 */
+    .detail-text {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.4);
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="collage-container">
+    <!-- 배경 프레임 -->
+    <div class="accent-box"></div>
+    
+    <!-- 흑백 메인 이미지 -->
+    <img src="https://raw.githubusercontent.com/lumiere-nam/assets/main/images/Black%20White%20Minimalist%20Model%20Agency%20Presentation.jpg" alt="Minimalist Model" class="collage-img">
+    
+    <!-- 겹치는 텍스트 (mix-blend-mode) -->
+    <div class="text-overlay title font-bodoni">
+      Minimal<br>
+      <span style="font-style: italic;">&amp; Chic</span>
+    </div>
+    
+    <!-- 세로 텍스트 -->
+    <div class="text-overlay subtitle font-bodoni">
+      Fashion Therapy
+    </div>
+    
+    <!-- 구석의 디테일 텍스트 -->
+    <div class="detail-text">
+      VOL. 01 / KFTA STYLE TEST
+    </div>
+  </div>
+
+</body>
+</html>
